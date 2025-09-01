@@ -14,120 +14,108 @@ body {
     font-family: 'Inter', sans-serif;
     display:flex; justify-content:center; align-items:center;
     min-height:100vh;
-    background: linear-gradient(120deg,#1f1c2c,#928dab);
-    overflow:hidden;
-}
-
-/* Animación sutil del fondo */
-body::before {
-    content:'';
-    position:absolute;
-    top:0; left:0; width:100%; height:100%;
-    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.05), transparent 60%);
-    animation: moveBg 20s linear infinite;
-    z-index:0;
-}
-@keyframes moveBg {
-    0% {transform:translate(0,0);}
-    50% {transform:translate(50px,50px);}
-    100% {transform:translate(0,0);}
+    background: linear-gradient(135deg,#2c3e50,#4ca1af);
 }
 
 .container {
-    position:relative;
-    z-index:1;
-    background: rgba(255,255,255,0.95);
-    border-radius:25px;
+    background: #fff;
+    border-radius: 25px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-    padding:30px;
-    width:380px;
-    max-width:95%;
-    display:flex; flex-direction:column; align-items:center;
-    transition:0.3s;
+    padding: 30px;
+    width: 350px;
+    max-width: 95%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+/* Título */
 h1 {
-    font-size:1.8rem;
-    font-weight:700;
-    margin-bottom:20px;
-    color:#333;
-    text-align:center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
 }
 
+/* Video oculto hasta generar */
 video {
-    width:100%;
-    max-width:280px;
-    height:500px;
-    border-radius:20px;
-    background:#000;
-    margin-bottom:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.4);
-    transition:0.3s;
+    display: none;
+    width: 100%;
+    max-width: 280px;
+    height: 500px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
+/* Botón de descarga */
+#descargar {
+    display: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #667eea;
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+#descargar:hover {
+    background: #5a67d8;
+}
+
+/* Input y selector */
 textarea {
-    width:100%;
-    height:90px;
-    padding:15px;
-    border-radius:15px;
-    border:1px solid #ccc;
-    font-size:16px;
-    resize:none;
-    margin-bottom:10px;
+    width: 100%;
+    height: 80px;
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    resize: none;
+    margin-bottom: 10px;
     box-shadow: inset 0 3px 8px rgba(0,0,0,0.05);
-    transition:0.3s;
-}
-
-textarea:focus {
-    outline:none;
-    border-color:#667eea;
-    box-shadow:0 0 10px rgba(102,126,234,0.3) inset;
 }
 
 select {
-    width:100%;
-    padding:12px;
-    border-radius:15px;
-    border:1px solid #ccc;
-    font-size:16px;
-    margin-bottom:15px;
-    transition:0.3s;
+    width: 100%;
+    padding: 12px;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin-bottom: 15px;
 }
 
-select:focus {
-    outline:none;
-    border-color:#667eea;
-    box-shadow:0 0 10px rgba(102,126,234,0.3);
-}
-
-button {
-    padding:14px 25px;
-    font-size:16px;
-    font-weight:600;
-    border:none;
-    border-radius:15px;
+/* Botón generar */
+button#generar {
+    padding: 14px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 15px;
     background: linear-gradient(90deg,#667eea,#764ba2);
-    color:#fff;
-    cursor:pointer;
-    transition:0.4s;
-    width:100%;
-    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    color: #fff;
+    cursor: pointer;
+    transition: 0.4s;
+    width: 100%;
 }
-
-button:hover {
+button#generar:hover {
     background: linear-gradient(90deg,#5a67d8,#5b3a8c);
-    transform:translateY(-2px);
-    box-shadow:0 12px 25px rgba(0,0,0,0.3);
+    transform: translateY(-2px);
 }
 
+/* Footer */
 .footer {
-    margin-top:12px;
-    font-size:12px;
-    color:#555;
-    text-align:center;
+    margin-top: 12px;
+    font-size: 12px;
+    color: #555;
+    text-align: center;
 }
 
-@media (max-width:400px){
+/* Responsive */
+@media(max-width:400px){
     .container{padding:20px;}
     h1{font-size:1.5rem;}
     video{height:450px;}
@@ -136,42 +124,65 @@ button:hover {
 </head>
 <body>
 <div class="container">
-    <h1>🎬 Generador de Video AI Premium</h1>
+    <h1>🎬 Generador de Video AI</h1>
     <video id="video" controls></video>
+    <button id="descargar">⬇ Descargar Video</button>
     <textarea id="prompt" placeholder="Escribe tu prompt aquí..."></textarea>
     <select id="estilo">
         <option value="biblico">Bíblico</option>
         <option value="fantasia">Fantasía</option>
+        <option value="arte_romano">Arte Romano</option>
         <option value="anime">Anime</option>
-        <option value="terror">Terror</option>
-        <option value="realista">Realista</option>
+        <option value="horror">Horror</option>
+        <option value="futurista">Futurista</option>
     </select>
     <button id="generar">Generar Video</button>
     <div class="footer">Simulación. Conecta tu API para generar videos reales de 9 segundos.</div>
 </div>
 
 <script>
+const video = document.getElementById('video');
+const descargar = document.getElementById('descargar');
+
 document.getElementById('generar').addEventListener('click', () => {
     const prompt = document.getElementById('prompt').value.trim();
     const estilo = document.getElementById('estilo').value;
     if(!prompt) return alert("Escribe un prompt primero.");
 
-    const video = document.getElementById('video');
-    video.src = '';
+    // Oculta video y botón antes de generar
+    video.style.display = "none";
+    descargar.style.display = "none";
     alert(`Generando video de 9 segundos en estilo ${estilo}...`);
 
-    // Simulación - reemplaza con API real
+    // Simulación de video
     setTimeout(() => {
-        video.src = "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4";
-        video.play();
+        // Video de ejemplo
+        const videoUrl = "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4";
+        video.src = videoUrl;
+        video.style.display = "block";
+        descargar.style.display = "inline-block";
+
+        // Configurar botón de descarga
+        descargar.onclick = () => {
+            const a = document.createElement('a');
+            a.href = videoUrl;
+            a.download = "video_generado.mp4";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
     }, 1500);
 
-    // Ejemplo API real:
+    // Para API real:
     // fetch('https://api.pikalabs.com/v1/generate',{
     //   method:'POST',
     //   headers:{'Content-Type':'application/json','Authorization':'Bearer TU_API_KEY'},
-    //   body: JSON.stringify({prompt:prompt, aspect_ratio:"9:16", duration:9, style:estilo})
-    // }).then(res=>res.json()).then(data=>video.src=data.video_url)
+    //   body: JSON.stringify({prompt: prompt, style: estilo, duration:9, aspect_ratio:"9:16"})
+    // }).then(res=>res.json()).then(data=>{
+    //     video.src = data.video_url;
+    //     video.style.display="block";
+    //     descargar.style.display="inline-block";
+    // });
 });
 </script>
 </body>

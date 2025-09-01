@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Video AI Vertical</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+        }
+        textarea {
+            width: 300px;
+            height: 100px;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        video {
+            width: 270px;
+            height: 480px;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generador de Video Vertical AI</h1>
+    <textarea id="prompt" placeholder="Escribe tu prompt aquí..."></textarea>
+    <button id="generar">Generar Video</button>
+    <video id="video" controls></video>
+
+    <script>
+        document.getElementById('generar').addEventListener('click', async () => {
+            const prompt = document.getElementById('prompt').value.trim();
+            if (!prompt) return alert("Escribe un prompt primero.");
+
+            const videoElement = document.getElementById('video');
+            videoElement.src = '';
+            videoElement.poster = '';
+            alert("Generando video...");
+
+            // Simulación de generación de video
+            // Aquí reemplazas con tu API real
+            setTimeout(() => {
+                // Video de ejemplo vertical 9:16
+                videoElement.src = "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4";
+                videoElement.play();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
